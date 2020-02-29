@@ -1,0 +1,91 @@
+#include "Skateboard.h"
+#include <string>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+//Write the definitions of these functions below
+
+// fill vector - fills Skateboard info
+// vector<Skateboard>& - Skateboards in your garage
+void fillVector(vector<Skateboard>&);
+
+// printVectorWithIterator - prints the information
+// of all Skateboard using the ::iterator
+void printVectorWithIterator(vector<Skateboard>&);
+
+// printVectorWithoutIterator - prints the information 
+// of all Skateboard using unsigned int
+void printVectorWithoutIterator(vector<Skateboard>&);
+
+int main () {
+  //Creates a new vector of Skateboards for your garage
+  vector<Skateboard> myGarage;
+
+  //Populates the vector
+  fillVector(myGarage);
+
+  cout << "Garage List using unsigned int: " << endl;
+  // Prints the contents of the vector using unsigned int
+  printVectorWithoutIterator(myGarage);  
+
+  cout << "\n";
+  cout  << "Recipe using the ::iterator:" << endl;
+  // Prints the contents of the vector using ::iterator 
+  printVectorWithIterator(myGarage);
+  
+  return 0;
+}
+
+
+//Implement functions here
+void printVectorWithoutIterator(vector<Skateboard>& myGarage){
+      for(unsigned int i = 0; i < myGarage.size(); i++) {
+        cout << myGarage[i].getSkateboardName() <<;
+	cout << " $ " << myGarage[i].getPrice() << " ";
+	cout << myGarage[i].getQuantity() << " ";
+	cout << "\n";
+      }
+}
+
+void printVectorWithIterator(vector<Skateboard>& myGarage){
+  for (vector<Skateboard>::iterator it = myGarage.begin(); it != myGarage.end()\
+; ++it){
+    cout << (*it).getSkateboardName() << " $ " << (*it).getPrice()<< " " << (*it).getQuantity() << " ";
+    cout << '\n';
+  }
+
+}
+
+
+void fillVector(vector<Skateboard>& myGarage){
+  int numOfItems;
+  string name;
+  double price;
+  int quantity;
+
+  cout << "How many skateboards are in your garage?" <<endl;
+  cin >> numOfItems;
+
+  Skateboard thisSkateboard;
+  
+  for (int i = 0; i < numOfItems ; i++){
+    
+
+    cout << "Skateboard " << i+1 << " name: " <<endl;
+    cin >> name;
+    thisSkateboard.setSkateboardName(name);
+    cout << "Skateboard " << i+1 << " price: " <<endl;
+    cin >> price;
+    thisSkateboard.setPrice(price);
+    cout << "Skateboard " << i+1 << " quantity: " <<endl;
+    cin >> quantity;
+    thisSkateboard.setQuantity(quantity);
+    
+    myGarage.push_back(thisSkateboard);
+
+
+  }
+
+}
